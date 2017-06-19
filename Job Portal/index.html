@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jobs</title>
+    <script src="assets/libs/angular.min.js"></script>
+    <script src="assets/js/app/app.js"></script>
+    <script src="assets/js/model/model.js"></script>
+    <script src="assets/js/controller/controller.js"></script>
+</head>
+<body ng-app="jobapp" ng-controller="jobctrl">
+    <div>
+        <input type="text" ng-model="jobTitle" placeholder="Title of Job"><br>
+        <input type="text" ng-model="companyName" placeholder="Company Name"><br>
+        <input type="text" ng-model="jobLocation" placeholder="Company Location"><br>
+        <input type="text" ng-model="jobSalary" placeholder="Salary"><br>
+        <input type="text" ng-model="jobExp" placeholder="Experience Required"><br>
+        <input type="text" ng-model="jobKeySkills" placeholder="Key Skills"><br>
+        <input type="text" ng-model="empName" placeholder="Employer Name"><br>
+        <textarea ng-model="jobDesc" cols="30" placeholder="Enter the details about the job"></textarea><br><br>
+        <button ng-click="postJob()">Post Job</button><br>
+        <input type="checkbox" ng-model="ticked" /> Search Jobs
+        <div ng-show="ticked" >
+            <input type="text" ng-model="searchJob"/>
+        </div>
+    </div>
+    <br>
+    <div>
+        <fieldset>
+            <legend>Jobs</legend>
+            <ul>
+               <li ng-repeat="job in jobList | filter:searchJob">
+                   Title of Job : {{job.item.jobTitle}}<br>
+                   Company : {{job.item.companyName}}<br>
+                   Location : {{job.item.jobLocation}}<br>
+                   Salary : {{job.item.jobSalary}}<br>
+                   Experience Req : {{job.item.jobExp}}<br>
+                   Key Skills : {{job.item.jobKeySkills}}<br>
+                   Post By : {{job.item.empName}}<br>
+                   Description : {{job.item.jobDesc}}<br>
+                   <button ng-click="editJob($index)"><img src="assets/images/edit.png" alt="edit"></button>
+                   <button ng-click="deleteJob($index)"><img src="assets/images/delete.png" alt="delete"></button>
+               </li>
+            </ul>
+        </fieldset>
+    </div>
+</body>
+</html>
